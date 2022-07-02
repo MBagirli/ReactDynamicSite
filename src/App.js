@@ -20,14 +20,12 @@ function App() {
 
   const HttpRequest = async (name)=>{
     try{
+      setInfo([]);
       let response = await fetch(`https://restcountries.com/v3.1/region/${name}`);
-      if(!response.ok){
-        throw new Error('Something went wrong...');
-      }
       let data = await response.json();
       setInfo(data);
-    }catch(error){
-      setErr(error.message);
+    }catch{
+      setErr('Something went wrong...');
     }
     setLoading(false);
   }
